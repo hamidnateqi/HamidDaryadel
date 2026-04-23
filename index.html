@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hamid Nateqi | Personal Website</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <style>
+    :root {
+      --bg: #081120;
+      --bg-soft: rgba(255,255,255,0.06);
+      --card: rgba(255,255,255,0.08);
+      --card-border: rgba(255,255,255,0.14);
+      --text: #f7fbff;
+      --muted: #c2d0e2;
+      --primary: #71b7ff;
+      --primary-strong: #3d8cff;
+      --accent: #8d79ff;
+      --accent-2: #18d3b5;
+      --shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+      --radius: 28px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(61,140,255,0.32), transparent 30%),
+        radial-gradient(circle at top right, rgba(141,121,255,0.26), transparent 30%),
+        radial-gradient(circle at bottom center, rgba(24,211,181,0.18), transparent 25%),
+        linear-gradient(135deg, #06101d 0%, #0c1930 48%, #060c17 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .background-orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(18px);
+      opacity: 0.35;
+      z-index: 0;
+      animation: float 10s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    .orb-1 {
+      width: 260px;
+      height: 260px;
+      top: 8%;
+      left: -70px;
+      background: linear-gradient(135deg, var(--primary), transparent);
+    }
+
+    .orb-2 {
+      width: 320px;
+      height: 320px;
+      top: 55%;
+      right: -90px;
+      background: linear-gradient(135deg, var(--accent), transparent);
+      animation-delay: 1.5s;
+    }
+
+    .orb-3 {
+      width: 180px;
+      height: 180px;
+      bottom: 10%;
+      left: 14%;
+      background: linear-gradient(135deg, var(--accent-2), transparent);
+      animation-delay: 3s;
+    }
+
+    .wrapper {
+      position: relative;
+      z-index: 1;
+      width: min(1180px, calc(100% - 32px));
+      margin: 22px auto;
+    }
+
+    .glass {
+      background: rgba(10, 19, 37, 0.68);
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-radius: var(--radius);
+    }
+
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 18px 24px;
+      position: sticky;
+      top: 12px;
+      z-index: 50;
+      margin-bottom: 18px;
+    }
+
+    .brand {
+      font-size: 1.1rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+    }
+
+    .brand span {
+      color: var(--primary);
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.95rem;
+      padding: 10px 14px;
+      border-radius: 999px;
+      transition: 0.25s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+      background: rgba(255,255,255,0.08);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 34px;
+      padding: 42px;
+      min-height: 80vh;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      color: #d7e8ff;
+      margin-bottom: 22px;
+      font-size: 0.95rem;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent-2), var(--primary));
+      box-shadow: 0 0 16px rgba(24, 211, 181, 0.7);
+    }
+
+    .hero h1 {
+      font-size: clamp(2.4rem, 5vw, 5rem);
+      line-height: 1.05;
+      margin-bottom: 18px;
+      letter-spacing: -0.04em;
+    }
+
+    .hero h1 .gradient {
+      background: linear-gradient(135deg, #ffffff 0%, #a0cfff 40%, #9f94ff 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .typing-line {
+      font-size: 1.18rem;
+      color: #d5e2f0;
+      margin-bottom: 18px;
+      min-height: 1.6em;
+      font-weight: 500;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 1.05rem;
+      max-width: 640px;
+      line-height: 1.8;
+      margin-bottom: 28px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+
+    .btn {
+      text-decoration: none;
+      padding: 14px 22px;
+      border-radius: 16px;
+      font-weight: 700;
+      transition: 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid transparent;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary-strong), var(--accent));
+      color: white;
+      box-shadow: 0 14px 30px rgba(61,140,255,0.28);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 18px 36px rgba(61,140,255,0.34);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.06);
+      color: var(--text);
+      border-color: rgba(255,255,255,0.12);
+    }
+
+    .btn-secondary:hover {
+      transform: translateY(-3px);
+      background: rgba(255,255,255,0.1);
+    }
+
+    .quick-info {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 12px;
+    }
+
+    .info-box {
+      padding: 18px;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .info-box strong {
+      font-size: 1.4rem;
+      display: block;
+      margin-bottom: 6px;
+      color: white;
+    }
+
+    .info-box span {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .hero-photo {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .photo-card {
+      position: relative;
+      width: min(420px, 100%);
+      padding: 18px;
+      border-radius: 34px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04));
+      border: 1px solid rgba(255,255,255,0.18);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .photo-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(113,183,255,0.16), transparent 35%, rgba(141,121,255,0.18));
+      pointer-events: none;
+    }
+
+    .profile-image {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      border-radius: 26px;
+      display: block;
+    }
+
+    .badge {
+      position: absolute;
+      padding: 12px 16px;
+      border-radius: 18px;
+      background: rgba(10, 20, 40, 0.84);
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: 0 14px 30px rgba(0,0,0,0.24);
+      font-size: 0.92rem;
+      color: var(--text);
+      backdrop-filter: blur(10px);
+    }
+
+    .badge-1 { top: 22px; left: -18px; }
+    .badge-2 { right: -10px; bottom: 90px; }
+    .badge-3 { left: 24px; bottom: 18px; }
+
+    section {
+      margin-top: 26px;
+      padding: 34px;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+
+    .section-title h2 {
+      font-size: clamp(1.6rem, 3vw, 2.5rem);
+      letter-spacing: -0.03em;
+    }
+
+    .section-title p {
+      color: var(--muted);
+      max-width: 640px;
+      line-height: 1.7;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 22px;
+    }
+
+    .card {
+      padding: 26px;
+      border-radius: 26px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .card p {
+      color: var(--muted);
+      line-height: 1.9;
+    }
+
+    .list {
+      list-style: none;
+      display: grid;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .list li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #e4edf8;
+      padding: 12px 14px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.04);
+    }
+
+    .list li i {
+      color: var(--primary);
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .project-card {
+      overflow: hidden;
+      position: relative;
+      border-radius: 26px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.09);
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 34px rgba(0,0,0,0.24);
+    }
+
+    .project-card img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .project-card .content {
+      padding: 22px;
+    }
+
+    .project-card h3 {
+      font-size: 1.15rem;
+      margin-bottom: 10px;
+    }
+
+    .project-card p {
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 0.96rem;
+    }
+
+    .project-tag {
+      display: inline-block;
+      margin-top: 14px;
+      padding: 9px 12px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      background: rgba(113,183,255,0.12);
+      color: #d4e9ff;
+      border: 1px solid rgba(113,183,255,0.18);
+    }
+
+    .skills {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .skill-item + .skill-item {
+      margin-top: 18px;
+    }
+
+    .skill-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 10px;
+      color: #e7eef8;
+    }
+
+    .bar {
+      width: 100%;
+      height: 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      overflow: hidden;
+    }
+
+    .bar span {
+      display: block;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      transform: translateX(-100%);
+      animation: fillBar 1.5s ease forwards;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 16px;
+    }
+
+    .timeline-item {
+      padding: 20px 20px 20px 24px;
+      border-left: 3px solid rgba(113,183,255,0.6);
+      border-radius: 0 20px 20px 0;
+      background: rgba(255,255,255,0.04);
+    }
+
+    .timeline-item small {
+      color: #a7cfff;
+      display: inline-block;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .timeline-item h4 {
+      font-size: 1.08rem;
+      margin-bottom: 8px;
+    }
+
+    .timeline-item p {
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    .contact-box {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .contact-box p {
+      color: var(--muted);
+      line-height: 1.8;
+      max-width: 700px;
+    }
+
+    .socials {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 22px;
+    }
+
+    .socials a {
+      width: 52px;
+      height: 52px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 18px;
+      text-decoration: none;
+      color: var(--text);
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      font-size: 1.2rem;
+      transition: 0.3s ease;
+    }
+
+    .socials a:hover {
+      transform: translateY(-4px) scale(1.03);
+      background: linear-gradient(135deg, rgba(61,140,255,0.24), rgba(141,121,255,0.24));
+    }
+
+    footer {
+      text-align: center;
+      padding: 26px;
+      color: #9fb1c5;
+      font-size: 0.95rem;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(35px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .reveal.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-12px); }
+    }
+
+    @keyframes fillBar {
+      to { transform: translateX(0); }
+    }
+
+    @media (max-width: 980px) {
+      .hero,
+      .about-grid,
+      .skills,
+      .contact-box,
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding: 28px;
+      }
+
+      section {
+        padding: 26px;
+      }
+
+      .badge-1 { left: 12px; }
+      .badge-2 { right: 12px; }
+    }
+
+    @media (max-width: 680px) {
+      .navbar {
+        padding: 16px 18px;
+      }
+
+      .nav-links {
+        gap: 6px;
+      }
+
+      .nav-links a {
+        padding: 8px 10px;
+        font-size: 0.86rem;
+      }
+
+      .hero {
+        min-height: auto;
+      }
+
+      .quick-info {
+        grid-template-columns: 1fr;
+      }
+
+      .badge {
+        position: static;
+        margin-top: 12px;
+      }
+
+      .photo-card {
+        padding: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="background-orb orb-1"></div>
+  <div class="background-orb orb-2"></div>
+  <div class="background-orb orb-3"></div>
+
+  <div class="wrapper">
+    <nav class="navbar glass">
+      <div class="brand">Hamid <span>Nateqi</span></div>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#journey">Journey</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <section class="hero glass reveal" id="home">
+      <div>
+        <div class="eyebrow">Personal Website</div>
+        <h1>
+          Hi, I'm <span class="gradient">Hamid Nateqi</span><br>
+          Wellcome 
+        </h1>
+        <div class="typing-line" id="typingText"></div>
+        <p>
+          "Welcome to my digital space. Here, I bring together my journey, my projects, and the innovative ideas I’m passionate about.
+           This site isn't just a portfolio—it's a reflection of my path as a developer.
+            With a focus on clean, modern design and interactive elements,
+            it's built to showcase both my work and my evolving skills.
+           Feel free to explore, connect, and see how technology shapes my creative vision."
+        </p>
+
+        <div class="hero-buttons">
+          <a href="#gallery" class="btn btn-primary"><i class="fa-solid fa-images"></i> View My Photos</a>
+          <a href="#contact" class="btn btn-secondary"><i class="fa-solid fa-paper-plane"></i> Contact Me</a>
+        </div>
+
+        <div class="quick-info">
+          <div class="info-box">
+            <strong>1</strong>
+            <span>Personal journey and background</span>
+          </div>
+          <div class="info-box">
+            <strong>2</strong>
+            <span>Engaging visual portfolio to showcase your creativity</span>
+          </div>
+          <div class="info-box">
+            <strong>3</strong>
+            <span>Fully adaptable to reflect your unique style</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-photo">
+        <div class="photo-card">
+          <img class="profile-image" src="IMG_0254(1).jpg" alt="Hamid profile photo placeholder">
+          <!-- <div class="badge badge-1">Replace this with your own main photo</div>
+          <div class="badge badge-2">Modern animated style</div>
+          <div class="badge badge-3">Personal and elegant design</div> -->
+        </div>
+      </div>
+    </section>
+
+    <section class="glass reveal" id="about">
+      <div class="section-title">
+        <h2>About Me</h2>
+        <p>
+          My name is Hamid Nateqi, and I am from Kabul, Afghanistan. I am currently a Computer Science student at Khatib University.
+          My journey into the world of technology started when I became fascinated with programming and ethical hacking.
+          I am passionate about solving complex problems, improving cybersecurity, and creating innovative solutions that make a positive impact.
+        </p>
+      </div>
+
+      <div class="about-grid">
+        <div class="card">
+          <p>
+            I am a passionate programmer skilled in languages such as Python, HTML, CSS, JavaScript, and Java. Additionally, I specialize in ethical hacking and cybersecurity.
+            My goal is to develop tools and solutions that make the digital world a safer place for everyone.
+          </p>
+          <br>
+          <p>
+            <!-- You can change this text later and write your own real introduction here. You can talk about your studies, your work,
+            your dreams, or anything else that represents you. -->
+          </p>
+        </div>
+
+        <div class="card">
+          <h3 style="margin-bottom: 16px; font-size: 1.25rem;">Highlights</h3>
+          <ul class="list">
+            <li><i class="fa-solid fa-user"></i> Personal branding with a strong first impression</li>
+            <li><i class="fa-solid fa-camera"></i> Photo sections ready for your own images</li>
+            <li><i class="fa-solid fa-wand-magic-sparkles"></i> Soft animations and modern effects</li>
+            <li><i class="fa-solid fa-mobile-screen-button"></i> Responsive layout for mobile and desktop</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="glass reveal" id="gallery">
+      <div class="section-title">
+        <h2>My Photo Gallery</h2>
+        <p>
+          I kept these sections ready so you can put your own photos later. Replace the image links with your real photos,
+          and this section will become your personal gallery.
+        </p>
+      </div>
+
+      <div class="projects-grid">
+        <article class="project-card">
+          <img src="heelo/0N6A3228(1).jpg" alt="Personal photo placeholder 1">
+          <div class="content">
+            <h3>My Favorite Portrait</h3>
+            <p>Put one of your best personal photos here. This can be your formal photo or a stylish portrait.</p>
+            <span class="project-tag">Replace with your image</span>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <img src="heelo/enhanced-image (2).png" alt="Personal photo placeholder 2">
+          <div class="content">
+            <h3>Life Moment</h3>
+            <p>You can use this block for a daily life photo, a university photo, or a memory you want to share.</p>
+            <span class="project-tag">Gallery card</span>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <img src="heelo/HAMID.jpg" alt="Personal photo placeholder 3">
+          <div class="content">
+            <h3>Another Special Photo</h3>
+            <p>Add another image here to complete your personal website gallery with a beautiful visual balance.</p>
+            <span class="project-tag">Personal memory</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="glass reveal" id="journey">
+      <div class="section-title">
+          <h2>My Journey & Skills</h2>
+          <p>
+              This section highlights not only my projects but also my personal growth, strengths, and the skills I've developed through my journey.
+          </p>
+      </div>
+  
+      <div class="skills">
+          <div class="card">
+              <h3 style="margin-bottom: 18px; font-size: 1.25rem;">Skills</h3>
+              <div class="skill-item">
+                  <div class="skill-top"><span>Creativity</span><span>100%</span></div>
+                  <div class="bar"><span style="width: 100%;"></span></div>
+              </div>
+              <div class="skill-item">
+                  <div class="skill-top"><span>Communication</span><span>100%</span></div>
+                  <div class="bar"><span style="width: 100%;"></span></div>
+              </div>
+              <div class="skill-item">
+                  <div class="skill-top"><span>Personal Branding</span><span>100%</span></div>
+                  <div class="bar"><span style="width: 100%;"></span></div>
+              </div>
+              <div class="skill-item">
+                  <div class="skill-top"><span>Design Sense</span><span>100%</span></div>
+                  <div class="bar"><span style="width: 100%;"></span></div>
+              </div>
+          </div>
+      </div>
+  </section>
+
+        <div class="card">
+          <h3 style="margin-bottom: 18px; font-size: 1.25rem;">Journey</h3>
+          <div class="timeline">
+            <div class="timeline-item">
+              <small>Start</small>
+              <h4>Building my own online identity</h4>
+              <p>This website starts as a personal home for my story, images, ideas, and future plans.</p>
+            </div>
+            <div class="timeline-item">
+              <small>Growth</small>
+              <h4>Sharing my personality and style</h4>
+              <p>It gives me a space to present myself in a better and more beautiful way than a simple social profile.</p>
+            </div>
+            <div class="timeline-item">
+              <small>Next Step</small>
+              <h4>Making it fully mine</h4>
+              <p>I can replace the sample text and photos with my own content and make the whole website truly personal.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="glass reveal" id="contact">
+      <div class="section-title">
+        <h2>Let’s Connect</h2>
+        <p>
+          This contact area is also improved. It looks nicer now and fits the style of a modern personal website.
+          You can keep your real links here and people can easily reach you.
+        </p>
+      </div>
+
+      <div class="card contact-box">
+        <div>
+          <p>
+            If you want to talk, collaborate, or simply say hello, feel free to contact me through my social accounts below.
+            You can also edit this section later and add your phone number, location, portfolio, or any other personal detail.
+          </p>
+          <div class="socials">
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=hamidnateqi200@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+            <!-- <a href="mailto:hamidnateqi200@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a> -->
+            <!-- <a href="mailto:hamidnateqi200@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a> -->
+            <a href="https://wa.me/93774379620" target="_blank" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="https://www.instagram.com/hamid_jan003/" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://www.tiktok.com/@hamed_darya_del" target="_blank" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="https://www.linkedin.com/in/hamidnateqi" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          </div>
+        </div>
+
+        <a href="mailto:hamidnateqi200@gmail.com" class="btn btn-primary"><i class="fa-solid fa-envelope"></i> Email Me</a>
+      </div>
+    </section>
+
+    <footer>
+      © 2026 Hamid Nateqi • Personal Website
+    </footer>
+  </div>
+
+  <script>
+    const textList = [
+      'A personal space with style and elegance.',
+      'A modern website for your story and photos.',
+      'Beautiful, animated, and ready for your own content.'
+    ];
+
+    const typingText = document.getElementById('typingText');
+    let textIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+
+    function typeEffect() {
+      const current = textList[textIndex];
+
+      if (!isDeleting) {
+        typingText.textContent = current.slice(0, charIndex + 1);
+        charIndex++;
+        if (charIndex === current.length) {
+          isDeleting = true;
+          setTimeout(typeEffect, 1400);
+          return;
+        }
+      } else {
+        typingText.textContent = current.slice(0, charIndex - 1);
+        charIndex--;
+        if (charIndex === 0) {
+          isDeleting = false;
+          textIndex = (textIndex + 1) % textList.length;
+        }
+      }
+
+      setTimeout(typeEffect, isDeleting ? 35 : 70);
+    }
+
+    typeEffect();
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+  </script>
+</body>
+</html>
